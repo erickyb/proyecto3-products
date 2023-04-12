@@ -7,6 +7,7 @@ const { port } = require('../config')
 const app = express()
 
 //mi codigo
+const productRouter = require('./products/products.router')
 db = require('./utils/database')
 
 
