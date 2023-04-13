@@ -22,7 +22,7 @@ const Products = db.define('Products', {
   },
 
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.FLOAT,
     allowNull: false
   },
   stock: {

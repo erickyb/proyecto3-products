@@ -11,6 +11,21 @@ const findAllProducts = async () => {
     return products
 }
 
+
+const patchProduct = (req, res) => {
+    const id = Number(req.params.id)
+    const productObj = req.body
+    productControllers.updateProduct(id, productObj)
+        .then(data => {
+            if (!data) {
+                return res.status(404).json({ message: 'Invalid ID' })
+            }
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({ message: 'Bad request', err })
+        })
+}
 const findProductById = async(id) => {
     //? Your code here:
     const product = await Products.findOne({
@@ -60,6 +75,7 @@ const deleteProduct = async(id) => {
 
 module.exports = {
     findAllProducts,
+    patchProduct,
     findProductById,
     createProduct,
     updateProduct,
