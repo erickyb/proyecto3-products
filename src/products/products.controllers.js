@@ -1,3 +1,4 @@
+// const Products = require('../models/products.models')
 const Products = require('../models/products.models')
 
 const findAllProducts = async () => {
@@ -24,8 +25,8 @@ const createProduct = async(productObj) => {
     //? Your code here:
     const newProduct = await Products.create({
         name: productObj.name,
-        description: productObj.name,
-        price: productObj.name,
+        description: productObj.description,
+        price: productObj.price,
         stock: productObj.stock
        
     })

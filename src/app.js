@@ -1,15 +1,12 @@
 const express = require("express")
-const cors = require('cors')
-
-
 const { port } = require('../config')
 
 const app = express()
 
 //mi codigo
 const productRouter = require('./products/products.router')
-db = require('./utils/database')
-
+const db = require('./utils/database')
+// db = require('./utils/database')
 
 app.get('/', (req, res) => {
     res.json({message:'server ok'})
@@ -17,10 +14,12 @@ app.get('/', (req, res) => {
 db.authenticate()
     .then(() => console.log('Database Authenticated!'))
     .catch(err => console.log(err))
+
 db.sync()
     .then(() => console.log('Database Synced!'))
     .catch(err => console.log(err))
-initModels()
+
+    
 app.use(express.json())
 
 app.use('/api/v1/products', productRouter)
