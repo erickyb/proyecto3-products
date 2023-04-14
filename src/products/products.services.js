@@ -45,14 +45,30 @@ const productNewProduct = (req, res) => {
   })  
 }
 
-const patchProduct = (req, res) => {
-  const id = req.params.id
-  const productObj = req.body
-  productsControllers.updateProduct(id, productObj)
-    .then(data => {
-      if (!data) return res.status(404).json({message:'Bad Request',err})
-  })
+// const patchProduct = (req, res) => {
+//   const id = req.params.id
+//   const productObj = req.body
+//   productsControllers.updateProduct(id, productObj)
+//     .then(data => {
+//       if (!data)
+        
+//       return res.status(404).json({ message: 'Bad Request', err })
+//   })
 
+// }
+const patchProduct = (req, res) => {
+  const id = Number(req.params.id)
+  const productObj = req.body
+  productControllers.updateProduct(id, productObj)
+    .then(data => {
+      if (!data) {
+        return res.status(404).json({ message: 'Invalid ID' })
+      }
+      res.status(200).json(data)
+    })
+    .catch(err => {
+      res.status(400).json({ message: 'Bad request', err })
+    })
 }
 
 const deleteProduct = (req, res) => { 

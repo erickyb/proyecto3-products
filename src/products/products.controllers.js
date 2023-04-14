@@ -4,9 +4,9 @@ const Products = require('../models/products.models')
 const findAllProducts = async () => {
     //? Your code here:
     const products = await Products.findAll({
-        include: {
-            model: Products
-        }
+        // include: {
+        //     model: Products
+        // }
     })
     return products
 }
@@ -36,7 +36,7 @@ const findProductById = async(id) => {
     return product
 }
 
-const createProduct = async(productObj) => {
+const createProduct = async (productObj) => {
     //? Your code here:
     const newProduct = await Products.create({
         name: productObj.name,
@@ -55,18 +55,17 @@ const updateProduct = async(id, productObj) => {
             id:id
         }
     })
-    if (!selectedProduct) return null
+    if(!selectedProduct) return null
 
-    const updateProduct = await 
-    selectedProduct.update(productObj)
-    return updateProduct
+    const modifiedProduct = await selectedProduct.update(productObj)
+    return modifiedProduct
 }
 
 const deleteProduct = async(id) => {
     //? Your code here:
     const product = await Products.destroy({
         where: {
-            id
+            id:id
         }
     })
     return product
